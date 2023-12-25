@@ -14,7 +14,7 @@ class HistoricalDataParser(object):
         self.file_name = file_name
         load_dotenv()
         PATH = os.environ['DB_PATH']
-        self.bd = sqlite3.connect(PATH)
+        self.bd = sqlite3.connect('../VolumeHub.V2.0/stocks.db')
         self.cur = self.bd.cursor()
 
 

@@ -4,7 +4,7 @@ from dotenv.main import load_dotenv
 
 load_dotenv()
 PATH = os.environ['DB_PATH']
-bd = sqlite3.connect(PATH) # подключение к бд
+bd = sqlite3.connect('../VolumeHub.V2.0/stocks.db') # подключение к бд
 cur = bd.cursor()
 cur.execute('CREATE TABLE IF NOT EXISTS FIGI('
             'figi TEXT,'

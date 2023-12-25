@@ -10,7 +10,7 @@ class DataBase(object):
         try:
             load_dotenv()
             PATH = os.environ['DB_PATH']
-            self.db = sqlite3.connect(PATH)
+            self.db = sqlite3.connect('../../VolumeHub.V2.0/stocks.db')
             self.cur = self.db.cursor()
             print('Database connected!')
 
