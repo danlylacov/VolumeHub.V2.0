@@ -10,7 +10,7 @@ from dotenv.main import load_dotenv
 from adminDB import UsersDataBase
 from keyboards import start_keyboard, payment_keyboard, PRICES_FOR_PAYMENT
 from apsched import send_message_interval
-from volume_analyze.Standard_deviation_and_Z_score.stream_analyze import StandartDeviationAnalize
+from stream_analyze import StandartDeviationAnalize
 
 load_dotenv()
 API_TOKEN = os.environ['BOT_TOKEN']

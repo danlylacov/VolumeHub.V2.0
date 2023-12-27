@@ -1,8 +1,6 @@
-from volume_analyze.Standard_deviation_and_Z_score.standart_deviation import StandartDeviation
+from standart_deviation import StandartDeviation
 from stream_parser.parser import StreamParser
 from db import DataBase
-import time
-
 
 
 class StandartDeviationAnalize(object):

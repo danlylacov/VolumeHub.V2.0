@@ -1,5 +1,5 @@
 from aiogram import Bot
-from volume_analyze.Standard_deviation_and_Z_score.stream_analyze import StandartDeviationAnalize
+import stream_analyze
 from db import DataBase
 from datetime import datetime
 from adminDB import UsersDataBase
@@ -10,7 +10,7 @@ users_db = UsersDataBase()
 
 async def send_message_interval(bot: Bot):
     print('Sched func works!')
-    deviation = StandartDeviationAnalize()
+    deviation = stream_analyze.StandartDeviationAnalize()
     result = deviation.analize()
     for i in range(len(result)):
         if result[i][1][0] == True:
