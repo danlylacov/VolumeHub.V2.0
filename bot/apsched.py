@@ -1,5 +1,5 @@
 from aiogram import Bot
-import stream_analyze
+from volume_analyze.Standard_deviation_and_Z_score import stream_analyze
 from db import DataBase
 from datetime import datetime
 from adminDB import UsersDataBase
