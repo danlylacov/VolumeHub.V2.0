@@ -1,0 +1,6 @@
+aiogram==2.25.1
+python-dotenv
+datetime
+tinkoff-investments
+apscheduler
+volume_analyze
