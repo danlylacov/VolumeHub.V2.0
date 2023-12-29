@@ -1,6 +1,4 @@
-
 import os
-
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.types import ParseMode, ContentType

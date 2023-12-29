@@ -1,6 +1,11 @@
 aiogram==2.25.1
-python-dotenv
-datetime
+python-dotenv~=1.0.0
+datetime~=5.4
 tinkoff-investments
-apscheduler
-volume_analyze
+apscheduler~=3.10.4
+html2image~=2.0.4.3
+matplotlib~=3.8.2
+mplfinance
+Pillow~=10.1.0
+pandas~=2.1.4
+tinkoff~=0.1.1

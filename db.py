@@ -111,8 +111,15 @@ class DataBase(object):
         last_price = int(self.cur.execute(f"""SELECT close FROM {figi} WHERE id = (SELECT max(id) FROM {figi})""").fetchone()[0])
         return round((last_price / open_day_price) * 100 - 100, 3)
 
+    def get_hour_data(self, figi: str):
+        data = self.cur.execute(f"""SELECT * FROM {figi} ORDER BY id DESC LIMIT 60""").fetchall()[::-1]
+        return data
+
+
+
+
 db = DataBase()
-print(db.get_figis())
+print(db.get_hour_data('BBG000BX7DH0'))
 
 
 
