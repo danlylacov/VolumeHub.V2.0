@@ -7,6 +7,7 @@ start_buttons = [
     KeyboardButton(text='📌Подписка📌')
 ]
 start_keyboard.add(*start_buttons)
+start_keyboard.add(KeyboardButton(text='👤Личный кабинет👤'))
 
 
 
@@ -16,7 +17,7 @@ prices = db.get_prices()
 payment_buttons = [
     InlineKeyboardButton(text=f"30 дней  | пробный период", callback_data="test"),
     InlineKeyboardButton(text=f"30 дней  | {prices[0]} рублей", callback_data="30"),
-    InlineKeyboardButton(text=f"90 дней  | {prices[1]} рублей", callback_data="90"),
+    InlineKeyboardButton(text=f" 90 дней  | {prices[1]} рублей", callback_data="90"),
     InlineKeyboardButton(text=f"365 дней | {prices[2]} рублей", callback_data="365"),
 ]
 payment_keyboard.add(*payment_buttons)

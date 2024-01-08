@@ -7,8 +7,9 @@ from dotenv.main import load_dotenv
 
 from adminDB import UsersDataBase
 from keyboards import start_keyboard, payment_keyboard, PRICES_FOR_PAYMENT
-from apsched import send_message_interval
-from volume_analyze.Standard_deviation_and_Z_score.stream_analyze import StandartDeviationAnalize
+from apsched import send_message_interval, subscription_reminder
+from datetime import datetime
+
 
 load_dotenv()
 API_TOKEN = os.environ['BOT_TOKEN']
@@ -34,6 +35,13 @@ async def menu(message: types.Message):
     if message.text == '📌Подписка📌':
         db = UsersDataBase()
         await bot.send_message(message.chat.id, str(db.get_subscription_text()), reply_markup=payment_keyboard)
+
+    if message.text == '👤Личный кабинет👤':
+        db = UsersDataBase()
+        date = db.get_subscription(message.from_user.id).split()[0]
+        text = f'🙋Привет, {message.from_user.username}!\n\n📍Твоя подписка активна до: {date}'
+        await bot.send_message(message.from_user.id, text)
+
 
 
 @dp.callback_query_handler(lambda c: c.data)
@@ -99,11 +107,7 @@ async def succsessful_payment(message: types.Message):
     await bot.send_message(message.chat.id, 'Платеж выполнен!')
 
 
-@dp.message_handler(commands=['help'])
-async def help(message: types.Message):
-    deviation = StandartDeviationAnalize()
-    result = deviation.analize()
-    await bot.send_message(691902762, result)
+
 
 
 # Функция для отправки сообщения через бота
@@ -117,16 +121,21 @@ async def send_message_to_user(chat_id, text, photo_path=None):
 
 async def on_startup(dp):
     scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
-    scheduler.add_job(send_message_interval, trigger='interval', seconds=60, kwargs={'bot': bot})
+
+    first_run_time = datetime.now().replace(second=20)
+
+
+    scheduler.add_job(send_message_interval, trigger='cron', second='20', kwargs={'bot': bot})
+    scheduler.add_job(subscription_reminder, trigger='cron', hour='19', minute='0', kwargs={'bot': bot})
+
     scheduler.start()
-    print('Scheduler started!')
+    print('Планировщик запущен!')
 
 
 
 
 
 if __name__ == "__main__":
-
     while True:
         try:
             executor.start_polling(dp, on_startup=on_startup, skip_updates=False)
