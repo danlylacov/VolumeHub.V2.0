@@ -8,7 +8,7 @@ import os
 class UsersDataBase:
 
     def __init__(self):
-        self.db = sqlite3.connect('admin.db')
+        self.db = sqlite3.connect('/root/VolumeHub.V2.0/bot/admin.db')
         self.cur = self.db.cursor()
         self.cur.execute("""CREATE TABLE IF NOT EXISTS users(
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
