@@ -4,7 +4,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from adminDB import UsersDataBase
 import requests
-from ..make_image.image_maker import ImageMaker
+from make_image.image_maker import ImageMaker
 
 
 
